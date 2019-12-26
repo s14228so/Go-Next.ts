@@ -3,21 +3,27 @@ version: "3"
 services: 
   api:
     container_name: api
-    build: .
+    build: ./api
     volumes: 
-      - .:/go/src/github.com/wilico/api
+      - ./api:/go/src/github.com/s14228so/go-next-todo
     ports:
       - 8080:8080
     links:
       - db
+  web: 
+    container_name: web
+    build: ./web
+    volumes: 
+      - ./web:/web
+    ports:
+      - 3000:3000
   db:
     container_name: db
     image: mysql:8.0.15
     volumes: 
-      - ./tmp/mysql:/var/lin/mysql
+      - ./api/tmp/mysql:/var/lin/mysql
     ports: 
       - 3306:3306
     environment: 
       MYSQL _DATABASE: todo
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    command: mysqld
