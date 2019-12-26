@@ -10,7 +10,7 @@ import (
 	"github.com/s14228so/todo/api/domain/service"
 )
 
-// UserController is user controlller
+// TodoController is user controlller
 type TodoController struct{}
 
 // Index action: GET /todos
