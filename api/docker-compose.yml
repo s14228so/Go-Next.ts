@@ -1,0 +1,23 @@
+version: "3"
+
+services: 
+  api:
+    container_name: api
+    build: .
+    volumes: 
+      - .:/go/src/github.com/wilico/api
+    ports:
+      - 8080:8080
+    links:
+      - db
+  db:
+    container_name: db
+    image: mysql:8.0.15
+    volumes: 
+      - ./tmp/mysql:/var/lin/mysql
+    ports: 
+      - 3306:3306
+    environment: 
+      MYSQL _DATABASE: todo
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    command: mysqld
