@@ -12,11 +12,11 @@ RUN apk update \
     && apk add --no-cache git
 
 
-# COPY go.mod go.sum ./
+COPY go.mod go.sum ./
 # #システムの方は共有マウントしてないのでgo mod downloadし直す
-# RUN go mod download
+RUN go mod download
 
 
-# CMD ["go", "run", "main.go"]
+CMD ["go", "run", "main.go"]
 
 
