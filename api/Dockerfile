@@ -9,7 +9,7 @@ RUN apk update \
     && apk add --no-cache git
 
 
-WORKDIR /go/src/github.com/wilico/api
+WORKDIR /go/src/github.com/s14228so/todo/api
 COPY . .
 
 CMD ["go", "run", "main.go"]

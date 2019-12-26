@@ -5,9 +5,9 @@ services:
     container_name: api
     build: ./api
     volumes: 
-      - ./api:/go/src/github.com/s14228so/go-next-todo
+      - ./api:/go/src/github.com/s14228so/todo/api
     ports:
-      - 8080:8080
+      - 8080:8080   
     links:
       - db
   web: 
@@ -16,6 +16,7 @@ services:
     volumes: 
       - ./web:/web
       - /web/node_modules
+      - /web/.next
       #data volumeで優先させる。(node_modulesだけホストからマウントされないようにする)
     ports:
       - 3000:3000
