@@ -11,3 +11,6 @@ RUN apk update && \
     apk add git && \
     npm install -g yarn &&\
     yarn
+
+
+CMD ["npm", "run", "dev"]
