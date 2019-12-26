@@ -15,8 +15,11 @@ services:
     build: ./web
     volumes: 
       - ./web:/web
+      - /web/node_modules
     ports:
       - 3000:3000
+    depends_on:
+      - api
   db:
     container_name: db
     image: mysql:8.0.15
