@@ -11,11 +11,13 @@ import (
 
 	"github.com/gin-gonic/gin"
 
+	"github.com/s14228so/todo/api/domain/entity"
 	"github.com/s14228so/todo/api/infrastructure/db"
 )
 
 // Service procides user's behavior
 type Service struct{}
+type User entity.User
 
 // Validate is User validate
 func (user User) Validate(db *gorm.DB) {
@@ -41,7 +43,6 @@ func (s Service) GetUserByEmail(email string) (User, error) {
 	return u, nil
 }
 
-// GetUserAll is get all User
 func (s Service) GetUserAll() ([]User, error) {
 	db := db.GetDB()
 	var u []User
@@ -55,7 +56,9 @@ func (s Service) GetUserAll() ([]User, error) {
 		if err := db.Model(&user).Related(&user.Todos, "Todos"); err != nil {
 			fmt.Println("プランが見つかりませんでした")
 		}
+
 		u[i] = user
+
 	}
 
 	return u, nil
@@ -63,7 +66,6 @@ func (s Service) GetUserAll() ([]User, error) {
 
 // CreateUserModel is create User model
 func (s Service) CreateUserModel(c *gin.Context) (User, []error) {
-	db := db.GetDB()
 	var u User
 
 	if err := c.BindJSON(&u); err != nil {
@@ -79,6 +81,10 @@ func (s Service) CreateUserModel(c *gin.Context) (User, []error) {
 func (s Service) GetUserByID(id string) (User, error) {
 	db := db.GetDB()
 	var u User
+
+	if err := db.First(&u, id).Related(&u.Todos, "Todos"); err != nil {
+		fmt.Println("プランが見つかりませんでした")
+	}
 	// var coach entity.Coach
 	return u, nil
 }

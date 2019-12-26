@@ -4,7 +4,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
-	"github.com/wilico/GolangAPI/presentation/controller"
+	"github.com/s14228so/todo/api/presentation/controller"
 )
 
 // Init is initialize server

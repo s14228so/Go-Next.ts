@@ -7,15 +7,16 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
+	"github.com/s14228so/todo/api/domain/entity"
 
 	"github.com/s14228so/todo/api/infrastructure/db"
 )
 
 // Service procides user's behavior
-type Service struct{}
+type Todo entity.Todo
 
 // GetTodoAll is get all User
-func (s Service) GetTodoAll() ([]User, error) {
+func (s Service) GetTodoAll() ([]Todo, error) {
 	db := db.GetDB()
 	var u []Todo
 
@@ -28,15 +29,15 @@ func (s Service) GetTodoAll() ([]User, error) {
 		if err := db.Model(&todo).Related(&todo.User, "User"); err != nil {
 			fmt.Println("プランが見つかりませんでした")
 		}
-		u[i] = user
+		u[i] = todo
 	}
 
 	return u, nil
 }
 
 // CreateUserModel is create User model
-func (s Service) CreateUserModel(c *gin.Context) (User, []error) {
-	db := db.GetDB()
+func (s Service) CreateTodoModel(c *gin.Context) (Todo, []error) {
+
 	var u Todo
 
 	if err := c.BindJSON(&u); err != nil {
@@ -49,17 +50,20 @@ func (s Service) CreateUserModel(c *gin.Context) (User, []error) {
 }
 
 // GetUserByID is get a User
-func (s Service) GetTodoByID(id string) (User, error) {
+func (s Service) GetTodoByID(id string) (Todo, error) {
 	db := db.GetDB()
 	var u Todo
+
+	if err := db.First(&u, id).Related(&u.User, "User"); err != nil {
+	}
 	// var coach entity.Coach
 	return u, nil
 }
 
 // UpdateUserByID is update a User
-func (s Service) UpdateTodorByID(id string, c *gin.Context) (User, error) {
+func (s Service) UpdateTodoByID(id string, c *gin.Context) (Todo, error) {
 	db := db.GetDB()
-	var u User
+	var u Todo
 
 	if err := db.Where("id = ?", id).First(&u).Error; err != nil {
 		fmt.Println(err)
@@ -75,7 +79,7 @@ func (s Service) UpdateTodorByID(id string, c *gin.Context) (User, error) {
 // DeleteUserByID is delete a User
 func (s Service) DeleteTodoByID(id string) error {
 	db := db.GetDB()
-	var u User
+	var u Todo
 
 	if err := db.Where("id = ?", id).Delete(&u).Error; err != nil {
 		return err

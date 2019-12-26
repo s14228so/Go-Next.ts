@@ -7,7 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/wilico/GolangAPI/domain/service"
+	"github.com/s14228so/todo/api/domain/service"
 )
 
 // UserController is user controlller
