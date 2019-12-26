@@ -1,9 +1,13 @@
-FROM node:9.11.1-alpine
+FROM node:10.16-alpine
 
 WORKDIR /web
 
-COPY . .
+
+COPY ./ts_next/package.json ./package.json
+
+
 
 RUN apk update && \
     apk add git && \
-    npm install -g npm 
+    npm install -g yarn &&\
+    yarn
