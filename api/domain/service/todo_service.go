@@ -14,7 +14,7 @@ import (
 // Service procides user's behavior
 type Service struct{}
 
-// GetUserAll is get all User
+// GetTodoAll is get all User
 func (s Service) GetTodoAll() ([]User, error) {
 	db := db.GetDB()
 	var u []Todo
