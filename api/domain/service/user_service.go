@@ -67,12 +67,19 @@ func (s Service) GetUserAll() ([]User, error) {
 // CreateUserModel is create User model
 func (s Service) CreateUserModel(c *gin.Context) (User, []error) {
 	var u User
+	db := db.GetDB()
 
 	if err := c.BindJSON(&u); err != nil {
 		var errors []error
 		errors = append(errors, err)
 		return u, errors
 	}
+
+	if errors := db.Create(&u).GetErrors(); errors != nil {
+		return u, errors
+	}
+
+	return u, nil
 
 	return u, nil
 }

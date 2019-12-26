@@ -37,12 +37,17 @@ func (s Service) GetTodoAll() ([]Todo, error) {
 
 // CreateUserModel is create User model
 func (s Service) CreateTodoModel(c *gin.Context) (Todo, []error) {
+	db := db.GetDB()
 
 	var u Todo
 
 	if err := c.BindJSON(&u); err != nil {
 		var errors []error
 		errors = append(errors, err)
+		return u, errors
+	}
+
+	if errors := db.Create(&u).GetErrors(); errors != nil {
 		return u, errors
 	}
 

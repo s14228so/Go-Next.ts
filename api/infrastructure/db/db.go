@@ -18,7 +18,10 @@ var (
 
 // Init is initialize db from main function
 func Init() {
-	db, err = gorm.Open("mysql", "root:@/todo?charset=utf8&parseTime=True&loc=Local")
+	//Dockerの時
+	db, err = gorm.Open("mysql", "root:@tcp(db:3306)/todo?charset=utf8&parseTime=True&loc=Local")
+	//localの時
+	// db, err = gorm.Open("mysql", "root:@tcp/todo?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		panic(err)
 	}
