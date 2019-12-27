@@ -21,6 +21,10 @@ const Header: React.FunctionComponent<Props> = () => (
             <Link href="/users">
                 <a>Users List</a>
             </Link>
+            |{' '}
+            <Link href="/todos">
+                <a>Todos List</a>
+            </Link>
         </nav>
     </header>
 )
