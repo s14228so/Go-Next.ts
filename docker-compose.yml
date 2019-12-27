@@ -10,6 +10,10 @@ services:
       - 8080:8080
     depends_on:
       - db
+    tty: true
+
+    
+
   web: 
     container_name: web
     build: ./web
@@ -22,6 +26,7 @@ services:
       - 3000:3000
     depends_on:
       - api
+    command: npm run dev
   db:
     container_name: db
     image: mysql:8.0.15
