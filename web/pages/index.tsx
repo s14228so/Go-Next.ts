@@ -1,26 +1,19 @@
-import React from "react"
-import { NextPage } from "next"
+import * as React from 'react'
+import Link from 'next/link'
+import Layout from '../components/Layout'
+import { NextPage } from 'next'
 
-import { TodoList } from "../components/TodoList"
-import Header from "../components/layout/Header"
-import { ObservableTodoStore } from "../store";
+const IndexPage: NextPage = () => {
+  return (
+    <Layout title="Home | Next.js + TypeScript Example">
+      <h1>Hello Next.js 👋</h1>
+      <p>
+        <Link href="/about">
+          <a>About</a>
+        </Link>
+      </p>
+    </Layout>
+  )
+}
 
-
-const observableTodoStore = new ObservableTodoStore();
-observableTodoStore.addTodo("read MobX tutorial");
-
-
-const Page: NextPage = props => (
-
-    <div>
-        <Header />
-        <TodoList store={observableTodoStore} />,
-        {/* <Provider> */}
-        {/* </Provider> */}
-    </div>
-
-)
-
-export default Page
-
-
+export default IndexPage
