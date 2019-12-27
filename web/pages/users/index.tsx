@@ -12,7 +12,7 @@ type Props = {
 }
 
 const WithInitialProps: NextPage<Props> = ({ items, pathname }) => (
-  <Layout title="Users List | Next.js + TypeScript Example">
+  <Layout title="Todos List">
     <h1>Users List</h1>
     <p>
       Example fetching data from inside <code>getInitialProps()</code>.
@@ -32,7 +32,7 @@ WithInitialProps.getInitialProps = async ({ pathname }) => {
   // Don't forget to include the respective types for any props passed into
   // the component.
   const items: User[] = await sampleFetchWrapper(
-    'http://localhost:3000/api/users'
+    'http://localhost:8080//users'
   )
 
   return { items, pathname }

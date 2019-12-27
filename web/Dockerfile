@@ -1,16 +1,13 @@
 
 FROM node:10.16-alpine
 
-WORKDIR /web
+WORKDIR /src
 
+COPY . .
 
-COPY package*.json ./
+RUN rm -rf /src/node_modules
+RUN rm -rf /src/package-lock.json
 
-RUN apk update && \
-    npm install -g npm && \
-    npm install
+RUN npm install
 
-# ENV HOST 0.0.0.0
-# EXPOSE 3000
-
-CMD ["npm", "run", "dev"]
+CMD ["bash", "-c", "npm run dev"]
