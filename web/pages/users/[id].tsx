@@ -2,7 +2,7 @@ import * as React from 'react'
 import { NextPageContext } from 'next'
 
 import { User } from '../../interfaces'
-import Layout from '../../components/Layout'
+import Layout from '../../components/layout'
 import ListDetail from '../../components/ListDetail'
 import { sampleFetchWrapper } from '../../utils/sample-api'
 
