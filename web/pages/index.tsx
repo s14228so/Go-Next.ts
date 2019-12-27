@@ -1,18 +1,21 @@
 import React from "react"
 import { NextPage } from "next"
 
-import AddTodo from "../components/AddTodo"
+import { TodoList } from "../components/TodoList"
 import Header from "../components/layout/Header"
-import { Provider, Store } from '../store'
+import { ObservableTodoStore } from "../store";
+
+
+const observableTodoStore = new ObservableTodoStore();
+observableTodoStore.addTodo("read MobX tutorial");
 
 
 const Page: NextPage = props => (
 
     <div>
-        {/* <Provider> */}
         <Header />
-        <h1>Welcome to next+TypeScript!!</h1>
-        <AddTodo />
+        <TodoList store={observableTodoStore} />,
+        {/* <Provider> */}
         {/* </Provider> */}
     </div>
 

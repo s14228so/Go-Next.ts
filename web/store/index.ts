@@ -1,33 +1,33 @@
-import React, { useReducer } from 'react'
-import reducer from './reducers'
+import { observable, computed, autorun } from 'mobx'
+import { Todo } from "../types/todo"
 
+export class ObservableTodoStore {
+    @observable todos: Todo[] = [];
+    @observable pendingRequests = 0;
 
+    constructor() {
+        autorun(() => console.log(this.report));
+    }
 
+    @computed get completedTodosCount() {
+        return this.todos.filter(
+            todo => todo.completed === true
+        ).length;
+    }
 
+    @computed get report() {
+        if (this.todos.length === 0)
+            return "<none>";
+        return `Next todo: "${this.todos[0].task}". ` +
+            `Progress: ${this.completedTodosCount}/${this.todos.length}`;
+    }
 
-const initialState = {
-    bus: {
-        nextBuses: [],
-        fromTo: {
-        }
-    },
-    todos: [],
-    count: 0,
-    timer: {
-        date: null,
-        ms: null
-    },
-    data: {
-        timeTable: null,
-        holidays: []
-    },
+    addTodo(task: string) {
+        this.todos.push({
+            task: task,
+            completed: false,
+            assignee: null
+        });
+    }
 }
-
-// 配列だけいけてる
-
-const Provider = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
-    return <Store.Provider value={ { state, dispatch } }> { children } < /Store.Provider>
-}
-
-export { Store, Provider }
+Terms
