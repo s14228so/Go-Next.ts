@@ -11,16 +11,16 @@ const AddTodo = props => {
 
     const [todo, setTodo] = useState("")
 
-    const handleSubmit = () => {
-        setTodo()
-
+    const handleSubmit = e => {
+        e.preventDefault()
+        setTodo("")
     }
     return (
         <form onSubmit={handleSubmit}>
             <label>タイトル</label>
             <input type="text" onChange={(e) => setTodo(e.target.value)} />
             <input type="submit"></input>
-            <div>{todo}</div>
+            {/* <div>{todo}</div> */}
         </form>
     )
 
