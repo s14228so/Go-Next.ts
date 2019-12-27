@@ -17,7 +17,7 @@ services:
     build: ./web
     volumes: 
       - ./web:/src
-      # - /web/node_modules
+      - /web/node_modules
       #data volumeで優先させる。(node_modulesだけホストからマウントされないようにする)
     ports:
       - 3000:3000

@@ -107,6 +107,11 @@ func (s Service) UpdateUserByID(id string, c *gin.Context) (User, error) {
 		return u, err
 	}
 
+	if err := c.BindJSON(&u); err != nil {
+		fmt.Println(err)
+		return u, err
+	}
+
 	db.Save(&u)
 
 	return u, nil

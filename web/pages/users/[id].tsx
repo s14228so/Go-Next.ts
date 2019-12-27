@@ -16,7 +16,7 @@ class InitialPropsDetail extends React.Component<Props> {
     try {
       const { id } = query
       const item = await sampleFetchWrapper(
-        `http://localhost:3000/api/users/${Array.isArray(id) ? id[0] : id}`
+        `http://localhost:8080/users/${Array.isArray(id) ? id[0] : id}`
       )
       return { item }
     } catch (err) {
@@ -40,8 +40,8 @@ class InitialPropsDetail extends React.Component<Props> {
     return (
       <Layout
         title={`${
-          item ? item.name : 'User Detail'
-        } | Next.js + TypeScript Example`}
+          item ? item.username : 'User Detail'
+          } | Next.js + TypeScript Example`}
       >
         {item && <ListDetail item={item} />}
       </Layout>
