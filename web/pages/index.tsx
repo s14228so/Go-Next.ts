@@ -5,24 +5,52 @@ import { Provider } from "../store"
 import TodoList from '../components/TodoList'
 import Layout from "../layout"
 import { NextPage } from 'next';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+const { useState } = React
 
-const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => (
-  <div>
-    <Head>
-      <title>Home</title>
-      <link rel="icon" href="/favicon.ico" />
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    </Head>
-    <Layout>
-      <div className="wrapper">
-        <AddTodo />
-        <TodoList />
-      </div>
+const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
 
-    </Layout>
+  const [dialog, setDialog] = useState(false)
+
+  const handleClick = () => {
+    setDialog(!dialog)
+  }
+
+  const style = {
+    none: {
+      display: "none"
+    },
+    block: {
+      display: "block"
+    }
+  }
+
+  return (
+    <div>
+      <Head>
+        <title>Home</title>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+      </Head>
+      <Layout>
+        <div className="wrapper">
+          <div style={dialog ? style.block : style.none}>
+            <AddTodo />
+          </div>
+
+          <TodoList />
+        </div>
+        <div className="float-btn">
+          <Fab color="primary" aria-label="add" onClick={handleClick}>
+            <AddIcon />
+          </Fab>
+        </div>
+
+      </Layout>
 
 
-    <style jsx>{`
+      <style jsx>{`
       .hero {
         width: 100%;
         color: #333;
@@ -73,8 +101,9 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => (
         color: #333;
       }
     `}</style>
-  </div>
-)
+    </div>
+  )
+}
 
 Home.getInitialProps = async ({ req }) => {
   const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
