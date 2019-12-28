@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import { add } from "../actions";
-import { Store } from '../store/context';
+import { add } from "../../actions";
+import { Store } from '../../store/context';
 import uuid from 'uuid';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';

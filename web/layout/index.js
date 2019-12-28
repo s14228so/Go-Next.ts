@@ -2,7 +2,8 @@ import * as React from 'react'
 import Head from 'next/head'
 import Header from "./Header"
 import { Provider } from "../store"
-
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const Layout = ({
     children,
@@ -21,11 +22,21 @@ const Layout = ({
         margin: 0;
         padding: 0;
       }
+      .float-btn{
+          position: absolute;
+          bottom: 10%;
+          right: 10%;
+      }
     `}</style>
             <div style={{ margin: "30px auto", width: "80%" }}>
                 <Provider>
                     {children}
                 </Provider>
+                <div className="float-btn">
+                    <Fab color="primary" aria-label="add" onClick={() => }>
+                        <AddIcon />
+                    </Fab>
+                </div>
 
             </div>
         </div>

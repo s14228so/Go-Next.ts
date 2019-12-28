@@ -14,8 +14,11 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => (
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     </Head>
     <Layout>
-      <AddTodo />
-      <TodoList />
+      <div className="wrapper">
+        <AddTodo />
+        <TodoList />
+      </div>
+
     </Layout>
 
 
@@ -23,6 +26,11 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => (
       .hero {
         width: 100%;
         color: #333;
+      }
+      .wrapper {
+        width: 50%;
+        display: flex;
+        justify-content: space-around;
       }
       .title {
         margin: 0;
