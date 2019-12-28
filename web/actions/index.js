@@ -1,7 +1,7 @@
-export const add = title => {
+export const add = todo => {
     return {
         type: "ADD_TODO",
-        title
+        payload: todo
     };
 };
 

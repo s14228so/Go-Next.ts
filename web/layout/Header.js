@@ -3,13 +3,8 @@ import * as React from 'react'
 
 import Link from 'next/link'
 
-const Header: React.FunctionComponent = () => {
-    // const style = {
-    //     textDecoration: "none",
-    //     color: "#000",
-    //     lineHeight: "70px",
-    //     fontSize: "12px"
-    // };
+const Header = () => {
+
 
     const links = [
         {
