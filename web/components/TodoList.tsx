@@ -13,7 +13,7 @@ const TodoList = () => {
             {state.map((todo, i) => {
                 return <div key={i}>
                     {todo.title}
-                    <button onClick={() => dispatch(remove(todo.id))}>削除</button>
+                    <button onClick={() => dispatch(remove(todo))}>削除</button>
                 </div>
                 return
             })}

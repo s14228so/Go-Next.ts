@@ -11,10 +11,10 @@ export const add = todo => {
     };
 };
 
-export const remove = (id: string) => {
+export const remove = todo => {
     return {
         type: ActionType.REMOVE_TODO,
-        payload: id
+        payload: todo
     };
 };
 

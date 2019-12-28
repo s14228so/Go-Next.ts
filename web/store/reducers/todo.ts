@@ -18,10 +18,7 @@ type IState = Todo[]
 
 interface IAction {
     type: ActionType;
-    payload: {
-        id: string
-        title: string
-    };
+    payload: Todo
 }
 
 // const initialState: IState = [];
@@ -31,6 +28,7 @@ const todos: React.Reducer<IState, IAction> = (state, action) => {
         case ActionType.ADD_TODO:
             return [...state, action.payload]
         case ActionType.REMOVE_TODO:
+            debugger
             return state.filter(item => {
                 return item.id !== action.payload.id
             })
