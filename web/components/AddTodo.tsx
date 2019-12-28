@@ -38,17 +38,16 @@ const AddTodo = ({ open, handleClose }) => {
 
     return (
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+            <DialogTitle id="form-dialog-title">Todoを追加</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    To subscribe to this website, please enter your email address here. We will send updates
-                    occasionally.
+                    やることリストを追加しましょう！
           </DialogContentText>
                 <TextField
                     autoFocus
                     margin="dense"
                     id="title"
-                    label="Todo"
+                    label="title"
                     fullWidth
                     onChange={handleChange}
                 />
@@ -58,7 +57,7 @@ const AddTodo = ({ open, handleClose }) => {
             Cancel
           </Button> */}
                 <Button onClick={handleSubmit} color="primary">
-                    Subscribe
+                    追加
           </Button>
             </DialogActions>
         </Dialog>
