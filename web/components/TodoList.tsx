@@ -7,12 +7,22 @@ import { remove } from "../actions"
 
 const TodoList = () => {
     const { state, dispatch } = useContext(Store)
+    interface Todo {
+        title: string,
+        id: string
+    }
+
+
     return (
         <div>
             {state.map((todo, i) => {
                 return <div key={i}>
                     {todo.title}
-                    <IconButton aria-label="delete" onClick={() => dispatch(remove(todo))}>
+                    <IconButton aria-label="delete" onClick={
+                        () => {
+                            if (confirm("削除しますか？")) dispatch(remove(todo));
+                        }
+                    }>
                         <DeleteIcon />
                     </IconButton>
                 </div>
