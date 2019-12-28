@@ -36,9 +36,8 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
       <Layout>
         <div className="wrapper">
           <div style={dialog ? style.block : style.none}>
-            <AddTodo />
+            <AddTodo open={dialog} handleClose={handleClick} />
           </div>
-
           <TodoList />
         </div>
         <div className="float-btn">
@@ -57,8 +56,6 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
       }
       .wrapper {
         width: 50%;
-        display: flex;
-        justify-content: space-around;
       }
       .title {
         margin: 0;
