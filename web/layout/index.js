@@ -25,6 +25,9 @@ const Layout = ({
         margin: 0;
         padding: 0;
       }
+      a {
+        text-decoration: none;
+      }
       .float-btn{
           position: absolute;
           bottom: 10%;

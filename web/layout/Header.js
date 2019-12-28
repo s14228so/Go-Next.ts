@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -16,11 +18,13 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
         flexGrow: 1,
+        cursor: "pointer"
     },
 }));
 
 export default function ButtonAppBar() {
     const classes = useStyles();
+    const router = useRouter()
 
     return (
         <div className={classes.root}>
@@ -29,10 +33,10 @@ export default function ButtonAppBar() {
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                        News
-          </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Typography variant="h6" className={classes.title} onClick={() => router.push("/")}>
+                        Todo App
+                    </Typography>
+                    <Button color="inherit" onClick={() => router.push("/login")}>Login</Button>
                 </Toolbar>
             </AppBar>
         </div>

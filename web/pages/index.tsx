@@ -54,6 +54,7 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
         width: 100%;
         color: #333;
       }
+  
       .wrapper {
         width: 50%;
       }
