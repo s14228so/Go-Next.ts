@@ -4,7 +4,9 @@ import AddTodo from "../components/AddTodo"
 import { Provider } from "../store"
 import TodoList from '../components/TodoList'
 import Layout from "../layout"
-const Home = () => (
+import { NextPage } from 'next';
+
+const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => (
   <div>
     <Head>
       <title>Home</title>
@@ -65,5 +67,10 @@ const Home = () => (
     `}</style>
   </div>
 )
+
+Home.getInitialProps = async ({ req }) => {
+  const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+  return { userAgent };
+};
 
 export default Home
