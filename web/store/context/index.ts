@@ -22,10 +22,7 @@ enum ActionType {
 
 interface IAction {
     type: ActionType;
-    payload: {
-        id: string,
-        title: string
-    } | string
+    payload: Todo | string
 }
 
 export const Store = createContext<StoreWithAction>({

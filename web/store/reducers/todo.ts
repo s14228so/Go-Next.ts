@@ -10,7 +10,7 @@ enum ActionType {
 
 interface Todo {
     title: string,
-    id: number
+    id: string
 }
 
 
@@ -19,7 +19,7 @@ type IState = Todo[]
 interface IAction {
     type: ActionType;
     payload: {
-        id: number
+        id: string
         title: string
     };
 }
