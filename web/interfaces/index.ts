@@ -13,5 +13,6 @@ export type User = {
 export type Todo = {
   id: number
   title: string
-  is_done: boolean
+  is_done: boolean,
+  user: User
 }

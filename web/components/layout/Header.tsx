@@ -3,32 +3,56 @@ import * as React from 'react'
 
 import Link from 'next/link'
 
+const Header: React.FunctionComponent = () => {
+    // const style = {
+    //     textDecoration: "none",
+    //     color: "#000",
+    //     lineHeight: "70px",
+    //     fontSize: "12px"
+    // };
 
-type Props = {
-    title?: string
-}
-const Header: React.FunctionComponent<Props> = () => (
-    <header>
-        <nav>
-            <Link href="/">
-                <a>Home</a>
-            </Link>{' '}
-            |{' '}
-            <Link href="/about">
-                <a>About</a>
-            </Link>{' '}
-            |{' '}
-            <Link href="/users">
-                <a>Users List</a>
+    const links = [
+        {
+            title: "Home",
+            path: "/"
+        },
+        {
+            title: "About",
+            path: "/about"
+        },
+        {
+            title: "Todo",
+            path: "/todos"
+        },
+    ];
+
+    const header = {
+        width: "100vw",
+        background: "lightGray",
+        lineHeight: "70px"
+    };
+
+    const items = links.map((item, i) => {
+        return (
+            <Link key={i} href={item.path}>
+                {item.title}
             </Link>
-            |{' '}
-            <Link href="/todos">
-                <a>Todos List</a>
-            </Link>
-        </nav>
-    </header>
-)
+        );
+    });
+    return (
+        <header style={header}>
+            <ul
+                style={{
+                    listStyle: "none",
+                    display: "flex",
+                    width: "25vw",
+                    justifyContent: "space-around"
+                }}
+            >
+                {items}
+            </ul>
+        </header>
+    );
+};
 
-export default Header
-
-
+export default Header;

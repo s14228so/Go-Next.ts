@@ -1,38 +1,26 @@
 import { NextPage } from 'next'
-import Link from 'next/link'
-
 import Layout from '../../components/layout'
 import List from '../../components/List'
-import { User } from '../../interfaces'
+import { Todo } from '../../interfaces'
 import { sampleFetchWrapper } from '../../utils/sample-api'
+import AddTodo from "../../components/AddTodo"
 
 type Props = {
-    items: User[]
+    items: Todo[]
     pathname: string
 }
 
-const WithInitialProps: NextPage<Props> = ({ items, pathname }) => (
+const WithInitialProps: NextPage<Props> = ({ items }) => (
     <Layout title="Todos List">
-        <h1>Users List</h1>
-        <p>
-            Example fetching data from inside <code>getInitialProps()</code>.
-    </p>
-        <p>You are currently on: {pathname}</p>
+        <AddTodo />
+        <h1>Todos List</h1>
         <List items={items} />
-        <p>
-            <Link href="/">
-                <a>Go home</a>
-            </Link>
-        </p>
     </Layout>
 )
 
 WithInitialProps.getInitialProps = async ({ pathname }) => {
-    // Example for including initial props in a Next.js function component page.
-    // Don't forget to include the respective types for any props passed into
-    // the component.
-    const items: User[] = await sampleFetchWrapper(
-        'http://localhost:8080//users'
+    const items: Todo[] = await sampleFetchWrapper(
+        'http://localhost:8080/todos'
     )
 
     return { items, pathname }
