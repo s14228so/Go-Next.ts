@@ -4,9 +4,7 @@ import List from '../../components/List'
 import { Todo } from '../../interfaces'
 import { sampleFetchWrapper } from '../../utils/sample-api'
 import AddTodo from "../../components/AddTodo"
-import React, { useContext } from "react"
 
-import { Store } from "../../store";
 
 
 
