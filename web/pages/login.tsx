@@ -12,8 +12,10 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import firebase from "../plugins/firebase";
 
 function Copyright() {
+
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
@@ -59,6 +61,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignInSide() {
     const classes = useStyles({});
+    console.log(firebase)
+
 
     return (
         <Grid container component="main" className={classes.root}>
