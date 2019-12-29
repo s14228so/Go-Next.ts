@@ -5,17 +5,13 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { remove } from "../actions"
 
-const TodoList = () => {
+const TodoList = ({ todos }) => {
     const { state, dispatch } = useContext(Store)
-    interface Todo {
-        title: string,
-        id: string
-    }
-
+    console.log(state)
 
     return (
         <div>
-            {state.map((todo, i) => {
+            {todos.map((todo, i) => {
                 return <div key={i}>
                     {todo.title}
                     <IconButton aria-label="delete" onClick={

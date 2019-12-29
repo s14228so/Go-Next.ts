@@ -7,15 +7,36 @@ import Layout from "../layout"
 import { NextPage } from 'next';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-const { useState } = React
+const { useState, useEffect, useContext } = React
+import axios from "axios"
+import { Store } from '../store/context';
+
 
 const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
 
   const [dialog, setDialog] = useState(false)
+  const [todos, setTodos] = useState([])
+  const { state, dispatch } = useContext(Store)
+
+  interface Todo {
+    title: string,
+    id: string
+  }
+
+  type IState = Todo[]
+
 
   const handleClick = () => {
     setDialog(!dialog)
   }
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/users/1").then(res => {
+      const todos: IState = res.data.todos
+      setTodos(todos)
+    })
+  }, [])
+
 
   const style = {
     none: {
@@ -38,7 +59,7 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
           <div style={dialog ? style.block : style.none}>
             <AddTodo open={dialog} handleClose={handleClick} />
           </div>
-          <TodoList />
+          <TodoList todos={state ? state : todos} />
         </div>
         <div className="float-btn">
           <Fab color="primary" aria-label="add" onClick={handleClick}>

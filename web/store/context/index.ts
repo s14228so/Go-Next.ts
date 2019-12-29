@@ -3,7 +3,7 @@ const { createContext } = React
 
 interface Todo {
     title: string,
-    id: string
+    id: string,
 }
 
 type IState = Todo[]
