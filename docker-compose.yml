@@ -23,7 +23,7 @@ services:
       - 3000:3000
     depends_on:
       - api
-    command: npm run dev
+    command: yarn dev
   db:
     container_name: db
     image: mysql:8.0.15
