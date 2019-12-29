@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from "react"
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import firebase from "../plugins/firebase";
+import { useRouter } from 'next/router'
+
+const { useState } = React
 
 function Copyright() {
     return (
@@ -60,6 +63,23 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUpSide() {
     const classes = useStyles({});
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const router = useRouter()
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(user => {
+                console.log(user)
+                router.push("/")
+            })
+            .catch(function (error) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
+    }
 
     return (
         <Grid container component="main" className={classes.root}>
@@ -84,6 +104,8 @@ export default function SignUpSide() {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                         />
                         <TextField
                             variant="outlined"
@@ -95,6 +117,8 @@ export default function SignUpSide() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
@@ -106,8 +130,9 @@ export default function SignUpSide() {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            onClick={handleSubmit}
                         >
-                            Sign In
+                            Sign Up
             </Button>
                         <Grid container>
                             <Grid item xs>
