@@ -5,9 +5,8 @@ WORKDIR /src
 
 COPY . .
 
-RUN rm -rf /src/node_modules
-RUN rm -rf /src/package-lock.json
+RUN  rm -rf /src/node_modules \
+    && rm -rf /src/package-lock.json \
+    && yarn
 
-RUN npm install
-
-CMD ["bash", "-c", "npm run dev"]
+CMD ["yarn", "dev"]
