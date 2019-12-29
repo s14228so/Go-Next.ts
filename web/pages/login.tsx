@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignInSide() {
     const classes = useStyles({});
-    console.log(process)
+    console.log(process.env)
     // console.log(firebase)
 
 

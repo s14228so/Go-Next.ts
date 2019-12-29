@@ -1,20 +1,15 @@
-const path = require('path')
-const Dotenv = require('dotenv-webpack')
+const webpack = require('webpack');
+require('dotenv').config();
 
 module.exports = {
   webpack: config => {
-    config.plugins = config.plugins || []
+    const env = Object.keys(process.env).reduce((acc, curr) => {
+      acc[`process.env.${curr}`] = JSON.stringify(process.env[curr]);
+      return acc;
+    }, {});
 
-    config.plugins = [
-      ...config.pluginsundefined
+    config.plugins.push(new webpack.DefinePlugin(env));
 
-      // Read the .env file
-      new Dotenv({
-        path: path.join(__dirnameundefined '.env')undefined
-        systemvars: true
-      })
-    ]
-
-    return config
+    return config;
   }
-}
+};
