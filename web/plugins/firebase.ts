@@ -7,7 +7,11 @@ const fbConfig = {
     projectId: process.env.REACT_APP_PROJECT_ID,
     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
 };
-firebase.initializeApp(fbConfig);
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(fbConfig);
+
+}
 
 const db = firebase.firestore();
 
