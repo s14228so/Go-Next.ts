@@ -1,7 +1,8 @@
 
-enum ActionType {
+export enum ActionType {
     ADD_TODO = 'ADD_TODO',
     REMOVE_TODO = 'REMOVE_TODO',
+    SET_USER = "SET_USER"
 }
 
 export const add = todo => {
@@ -10,6 +11,14 @@ export const add = todo => {
         payload: todo
     };
 };
+
+
+// export const init = data => {
+//     return {
+//         type: ActionType.INIT,
+//         payload: data
+//     };
+// };
 
 export const remove = todo => {
     return {

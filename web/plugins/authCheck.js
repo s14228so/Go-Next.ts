@@ -20,8 +20,9 @@ export const authCheck = () => {
                 })
 
             // console.log(userData.data)
-            // dispatch(set_user([]))
-            dispatch(add({ title: "ok", id: "adksads" }));
+            dispatch(set_user(userData.data))
+            console.log(state)
+            // dispatch(add({ title: "ok", id: "adksads" }));
 
             // add(todo: any): {
             //     type: ActionType;

@@ -1,9 +1,8 @@
+import User from "../types/user";
+import { ActionType } from "./"
 
-enum ActionType {
-    SET_USER = 'SET_UER',
-}
-
-export const set_user = user => {
+export const set_user = (user: User) => {
+    console.log({ user })
     return {
         type: ActionType.SET_USER,
         payload: user

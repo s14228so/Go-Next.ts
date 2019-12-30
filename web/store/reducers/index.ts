@@ -3,22 +3,14 @@ import { Reducer, combineReducers } from "redux"
 
 import todos from "./todo"
 import user from "./user"
-
-interface Todo {
-    title: string,
-    id: string,
-}
-
-interface User {
-    username: string,
-    id: number,
-}
+import User from "../../types/user"
+import Todo from "../../types/todo"
 
 
 
 export interface CombinedState {
-    todos: Todo[],
-    user: User,
+    todos?: Todo[],
+    user?: User,
 }
 
 
