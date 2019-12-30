@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 
-const { useReducer, createContext } = React
+const { useReducer } = React
 import { Store, initialState } from './context';
 
 import reducers from './reducers'

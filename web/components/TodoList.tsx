@@ -22,7 +22,6 @@ const TodoList = ({ todos }) => {
                         <DeleteIcon />
                     </IconButton>
                 </div>
-                return
             })}
         </div >
     )

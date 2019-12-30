@@ -12,6 +12,8 @@ import axios from "axios"
 import { Store } from '../store/context';
 import { authCheck } from "../plugins/authCheck";
 import { set_user } from "../actions/user"
+import { add } from "../actions"
+import { ActionType } from "../actions"
 
 import User from "../types/user"
 import Todo from "../types/todo"
@@ -27,8 +29,7 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
 
 
 
-  const user: User = { id: 1 }
-  dispatch(set_user(user))
+
 
   type IState = Todo[]
 
@@ -37,12 +38,14 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
     setDialog(!dialog)
   }
 
-  // useEffect(() => {
-  //   axios.get("http://localhost:8080/users/1").then(res => {
-  //     const todos: IState = res.data.todos
-  //     setTodos(todos)
-  //   })
-  // }, [])
+  useEffect(() => {
+    dispatch(add({ title: "unko", id: "ok" }))
+    const user: User = { id: 1 }
+    dispatch({ type: ActionType.SET_USER, payload: user })
+    console.log({ state })
+    console.log(state)
+
+  }, [])
 
 
   const style = {
@@ -62,6 +65,7 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       </Head>
       <Layout>
+        <button onClick={() => dispatch(add({ title: "unko", id: "ok" }))}>click</button>
         <div className="wrapper">
           <div style={dialog ? style.block : style.none}>
             <AddTodo open={dialog} handleClose={handleClick} />
