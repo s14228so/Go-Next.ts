@@ -13,7 +13,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import firebase from "../plugins/firebase";
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import axios from "../plugins/axios"
 
 const { useState } = React
 
@@ -65,6 +66,7 @@ export default function SignUpSide() {
     const classes = useStyles({});
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [username, setUsername] = useState("")
     const router = useRouter()
 
 
@@ -73,7 +75,15 @@ export default function SignUpSide() {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(user => {
                 console.log(user)
-                router.push("/")
+                axios.post("/users", {
+                    username: username,
+                    email: email,
+                }).then(res => {
+                    console.log(res.data)
+                    router.push("/")
+                }).catch(err => {
+                    console.log(err)
+                })
             })
             .catch(function (error) {
                 const errorCode = error.code;
@@ -94,6 +104,19 @@ export default function SignUpSide() {
                         Sign Up
           </Typography>
                     <form className={classes.form} noValidate>
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="username"
+                            label="Username"
+                            type="text"
+                            id="username"
+                            autoComplete="username"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                        />
                         <TextField
                             variant="outlined"
                             margin="normal"
