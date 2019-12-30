@@ -14,16 +14,14 @@ interface Todo {
 }
 
 
-type IState = Todo[]
+type TState = Todo[]
 
 interface IAction {
     type: ActionType;
     payload: Todo
 }
 
-// const initialState: IState = [];
-
-const todos: React.Reducer<IState, IAction> = (state, action) => {
+const todos: React.Reducer<TState, IAction> = (state, action) => {
     switch (action.type) {
         case ActionType.ADD_TODO:
             return [...state, action.payload]
@@ -35,19 +33,5 @@ const todos: React.Reducer<IState, IAction> = (state, action) => {
             return state
     }
 }
-
-
-// const todos = (state = [], action) => {
-//     switch (action.type) {
-//         case "ADD_TODO":
-//             return [...state, action.payload]
-//         case "REMOVE_TODO":
-//             return state.filter(item => {
-//                 return item.id !== action.id
-//             })
-//         default:
-//             return state
-//     }
-// }
 
 export default todos

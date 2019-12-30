@@ -11,7 +11,7 @@ const TodoList = ({ todos }) => {
 
     return (
         <div>
-            {todos.map((todo, i) => {
+            {state.todos.map((todo, i) => {
                 return <div key={i}>
                     {todo.title}
                     <IconButton aria-label="delete" onClick={

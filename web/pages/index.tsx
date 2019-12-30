@@ -10,18 +10,18 @@ import AddIcon from '@material-ui/icons/Add';
 const { useState, useEffect, useContext } = React
 import axios from "axios"
 import { Store } from '../store/context';
-
+import { authCheck } from "../plugins/authCheck";
 
 const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
 
   const [dialog, setDialog] = useState(false)
   const [todos, setTodos] = useState([])
   const { state, dispatch } = useContext(Store)
-
   interface Todo {
     title: string,
     id: string
   }
+  authCheck()
 
   type IState = Todo[]
 

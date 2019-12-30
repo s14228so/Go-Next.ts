@@ -25,6 +25,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/AddTodo.tsx"
+    "components/AddTodo.tsx",
+    "store/index.jsx",
+    "plugins/authCheck.js"
   ]
 }

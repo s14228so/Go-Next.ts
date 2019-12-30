@@ -10,7 +10,6 @@ import Button from '@material-ui/core/Button';
 const AddTodo = () => {
     const [title, setTitle] = useState("");
     const { state, dispatch } = useContext(Store);
-    console.log(state)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();

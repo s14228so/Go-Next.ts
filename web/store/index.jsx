@@ -5,11 +5,10 @@ import * as React from 'react'
 const { useReducer, createContext } = React
 import { Store, initialState } from './context';
 
-import todos from './reducers/todo'
+import reducers from './reducers'
 
-
-export const Provider: React.FC = ({ children }) => {
-    const [state, dispatch] = useReducer(todos, initialState);
+export const Provider = ({ children }) => {
+    const [state, dispatch] = useReducer(reducers, initialState);
 
     return (
         <Store.Provider value={{ state, dispatch }
