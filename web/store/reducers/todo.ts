@@ -22,6 +22,7 @@ interface IAction {
 }
 
 const todos: React.Reducer<TState, IAction> = (state, action) => {
+    console.log({ action })
     switch (action.type) {
         case ActionType.ADD_TODO:
             return [...state, action.payload]
