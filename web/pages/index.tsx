@@ -65,7 +65,7 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       </Head>
       <Layout>
-        <button onClick={() => dispatch(add({ title: "unko", id: "ok" }))}>click</button>
+        {/* <button onClick={() => dispatch(add({ title: "unko", id: "ok" }))}>click</button> */}
         <div className="wrapper">
           <div style={dialog ? style.block : style.none}>
             <AddTodo open={dialog} handleClose={handleClick} />
