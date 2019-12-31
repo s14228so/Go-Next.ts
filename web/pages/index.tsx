@@ -8,30 +8,21 @@ import { NextPage } from 'next';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 const { useState, useEffect, useContext } = React
-import axios from "axios"
-import { Store } from '../store/context';
 import { authCheck } from "../plugins/authCheck";
 import { set_user } from "../actions/user"
-import { add } from "../actions"
-import { ActionType } from "../actions"
-
-import User from "../types/user"
 import Todo from "../types/todo"
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
-
+  const dispatch = useDispatch()
   const [dialog, setDialog] = useState(false)
   const [todos, setTodos] = useState([])
-  const { state, dispatch } = useContext(Store)
 
-  authCheck()
 
 
   const storeTodos = useSelector(state => state.todos)
   const storeUser = useSelector(state => state.user)
-  console.log({ storeTodos })
   console.log({ storeUser })
 
   type IState = Todo[]
@@ -39,16 +30,13 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
 
   const handleClick = () => {
     setDialog(!dialog)
+
   }
 
   useEffect(() => {
-
-    dispatch(add({ title: "unko", id: "ok" }))
-    const user: User = { id: 1 }
-    dispatch({ type: ActionType.SET_USER, payload: user })
-    console.log({ state })
-    console.log(state)
-
+    const user = authCheck().then(user => {
+      dispatch(set_user(user))
+    })
   }, [])
 
 
@@ -74,7 +62,7 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
           <div style={dialog ? style.block : style.none}>
             <AddTodo open={dialog} handleClose={handleClick} />
           </div>
-          <TodoList todos={state ? state : todos} />
+          <TodoList todos={storeTodos} />
         </div>
         <div className="float-btn">
           <Fab color="primary" aria-label="add" onClick={handleClick}>

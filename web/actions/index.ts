@@ -6,7 +6,6 @@ export enum ActionType {
 }
 
 export const add = (todo: Todo) => {
-    console.log({ todo })
     return {
         type: ActionType.ADD_TODO,
         payload: todo

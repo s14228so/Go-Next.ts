@@ -15,7 +15,6 @@ interface IAction {
 const initialState: Todo[] = [{ id: "1", title: "title1" }]
 
 const todos: React.Reducer<TState, IAction> = (state = initialState, action) => {
-    console.log("todosのreducer")
     switch (action.type) {
         case ActionType.ADD_TODO:
             return [...state, action.payload]

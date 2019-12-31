@@ -74,7 +74,6 @@ export default function SignUpSide() {
         e.preventDefault()
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(user => {
-                console.log(user)
                 axios.post("/users", {
                     username: username,
                     email: email,

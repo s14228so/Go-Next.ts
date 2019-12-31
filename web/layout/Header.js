@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -25,6 +27,7 @@ const useStyles = makeStyles(theme => ({
 export default function ButtonAppBar() {
     const classes = useStyles();
     const router = useRouter()
+    const authUser = useSelector(state => state.user)
 
     return (
         <div className={classes.root}>
@@ -36,7 +39,18 @@ export default function ButtonAppBar() {
                     <Typography variant="h6" className={classes.title} onClick={() => router.push("/")}>
                         Todo App
                     </Typography>
-                    <Button color="inherit" onClick={() => router.push("/login")}>Login</Button>
+                    {authUser ?
+                        <IconButton
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={() => router.push("/account")}
+                            color="inherit"
+                        >
+                            <AccountCircle />
+                        </IconButton> :
+                        <Button color="inherit" onClick={() => router.push("/login")}>Login</Button>
+                    }
                 </Toolbar>
             </AppBar>
         </div>

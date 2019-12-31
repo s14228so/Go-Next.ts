@@ -15,7 +15,6 @@ interface UAction {
 const initialState: UState = { username: "タオル", email: "ok" }
 
 const user: React.Reducer<UState, UAction> = (state = initialState, action) => {
-    console.log("rdeucerきたy")
     switch (action.type) {
         case ActionType.SET_USER:
             return { ...action.payload }

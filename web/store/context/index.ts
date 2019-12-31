@@ -28,7 +28,6 @@ enum ActionType {
 }
 
 
-console.log(ActionType)
 interface IAction {
     type: ActionType;
     payload: Todo | User
