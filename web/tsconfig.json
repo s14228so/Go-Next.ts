@@ -27,6 +27,7 @@
     "**/*.tsx",
     "components/AddTodo.tsx",
     "store/index.jsx",
-    "plugins/authCheck.js"
+    "plugins/authCheck.js",
+    "pages/_app.jsx"
   ]
 }

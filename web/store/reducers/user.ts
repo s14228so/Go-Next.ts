@@ -12,7 +12,7 @@ interface UAction {
     payload: User
 }
 
-const initialState: UState = {}
+const initialState: UState = { username: "タオル", email: "ok" }
 
 const user: React.Reducer<UState, UAction> = (state = initialState, action) => {
     console.log("rdeucerきたy")

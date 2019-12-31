@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import AddTodo from "../components/AddTodo"
-import { Provider } from "../store"
+
 import TodoList from '../components/TodoList'
 import Layout from "../layout"
 import { NextPage } from 'next';
@@ -17,6 +17,8 @@ import { ActionType } from "../actions"
 
 import User from "../types/user"
 import Todo from "../types/todo"
+import { useSelector } from 'react-redux'
+
 
 const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
 
@@ -27,9 +29,10 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
   authCheck()
 
 
-
-
-
+  const storeTodos = useSelector(state => state.todos)
+  const storeUser = useSelector(state => state.user)
+  console.log({ storeTodos })
+  console.log({ storeUser })
 
   type IState = Todo[]
 
@@ -39,6 +42,7 @@ const Home: NextPage<{ userAgent: string | undefined }> = ({ userAgent }) => {
   }
 
   useEffect(() => {
+
     dispatch(add({ title: "unko", id: "ok" }))
     const user: User = { id: 1 }
     dispatch({ type: ActionType.SET_USER, payload: user })

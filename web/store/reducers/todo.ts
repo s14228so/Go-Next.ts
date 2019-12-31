@@ -12,7 +12,7 @@ interface IAction {
     type: ActionType;
     payload: Todo
 }
-const initialState: Todo[] = []
+const initialState: Todo[] = [{ id: "1", title: "title1" }]
 
 const todos: React.Reducer<TState, IAction> = (state = initialState, action) => {
     console.log("todosのreducer")

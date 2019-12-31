@@ -1,8 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
 import Header from "./Header"
-import { Provider } from "../store"
-
 
 
 const Layout = ({
@@ -35,11 +33,7 @@ const Layout = ({
       }
     `}</style>
             <div style={{ margin: "30px auto", width: "80%" }}>
-                <Provider>
-                    {children}
-                </Provider>
-
-
+                {children}
             </div>
         </div>
     )

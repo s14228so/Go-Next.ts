@@ -1,21 +1,33 @@
 
 
-import * as React from 'react'
+import rootReducer from './reducers'
+import { createStore } from 'redux';
+export default initialState => createStore(rootReducer, initialState)
 
-const { useReducer } = React
-import { Store, initialState } from './context';
+// export const store = createStore(reducers)
+// export const Provider = ({ children }) => {
+//     const [state, dispatch] = useReducer(reducers, initialState);
 
-import reducers from './reducers'
+//     return (
+//         <Store.Provider value={{ state, dispatch }
+//         }>
+//             {children}
+//         </Store.Provider>
+//     );
+// };
 
-export const Provider = ({ children }) => {
-    const [state, dispatch] = useReducer(reducers, initialState);
 
-    return (
-        <Store.Provider value={{ state, dispatch }
-        }>
-            {children}
-        </Store.Provider>
-    );
-};
+
+// export const Provider = ({ children }) => {
+//     const [state, dispatch] = useReducer(reducers, initialState);
+
+//     return (
+//         <Store.Provider value={{ state, dispatch }
+//         }>
+//             {children}
+//         </Store.Provider>
+//     );
+// };
+
 
 
